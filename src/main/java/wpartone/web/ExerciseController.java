@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import wpartone.model.binding.ExerciseBindingModelAdd;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import wpartone.model.binding.ExerciseBindingAddModel;
 
 import javax.validation.Valid;
 
@@ -23,20 +23,19 @@ public class ExerciseController {
 
     @PostMapping("/add")
     public String addPost(@Valid @ModelAttribute("exerciseBindingModelAdd")
-                                  ExerciseBindingModelAdd exerciseBindingModelAdd,
-                          BindingResult bindingResult) {
+                                  ExerciseBindingAddModel exerciseBindingAddModel,
+                          BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
 
-        System.out.println();
-    if(bindingResult.hasErrors()){
-            // todo
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("exerciseBindingModelAdd", exerciseBindingAddModel);
+            return "redirect:/";
         } else {
-
+            // todo save
             return "redirect:/";
         }
 
-
-        return "redirect:/";
 
     }
 

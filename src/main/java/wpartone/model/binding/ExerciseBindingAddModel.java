@@ -7,14 +7,14 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
 
-public class ExerciseBindingModelAdd {
+public class ExerciseBindingAddModel {
 
     private String name;
     private LocalDateTime addedOn;
     private LocalDateTime dueDate;
 
 
-    public ExerciseBindingModelAdd() {
+    public ExerciseBindingAddModel() {
     }
 
     @Length(min = 3, message = "Exercise name length must be more than 2 characters")
