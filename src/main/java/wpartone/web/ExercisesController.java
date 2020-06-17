@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/exercises")
-public class ExerciseController {
+public class ExercisesController {
 
     @GetMapping("/add")
     public String add() {
@@ -21,22 +21,22 @@ public class ExerciseController {
         return "exercise-add";
     }
 
-    @PostMapping("/add")
-    public String addPost(@Valid @ModelAttribute("exerciseBindingModelAdd")
-                                  ExerciseBindingAddModel exerciseBindingAddModel,
-                          BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
-
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("exerciseBindingModelAdd", exerciseBindingAddModel);
-            return "redirect:/";
-        } else {
-            // todo save
-            return "redirect:/";
-        }
-
-
-    }
+//    @PostMapping("/add")
+//    public String addPost(@Valid @ModelAttribute("exerciseBindingModelAdd")
+//                                  ExerciseBindingAddModel exerciseBindingAddModel,
+//                          BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+//
+//
+//
+//        if (bindingResult.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("exerciseBindingModelAdd", exerciseBindingAddModel);
+//            return "redirect:/";
+//        } else {
+//            // todo save
+//            return "redirect:/";
+//        }
+//
+//
+//    }
 
 }
