@@ -9,6 +9,9 @@ import wpartone.repository.UserRepository;
 import wpartone.service.RoleService;
 import wpartone.service.UserService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,5 +46,15 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByUsername(username)
                 .map(user -> this.modelMapper.map(user, UserServiceModel.class))
                 .orElse(null);
+    }
+
+    @Override
+    public List<String> findAllUserNames() {
+
+        return this.userRepository
+                .findAll()
+                .stream()
+                .map(u -> u.getUsername())
+                .collect(Collectors.toList());
     }
 }
