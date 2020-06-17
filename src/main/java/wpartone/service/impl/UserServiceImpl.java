@@ -3,6 +3,7 @@ package wpartone.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wpartone.model.entity.Role;
 import wpartone.model.entity.User;
 import wpartone.model.service.UserServiceModel;
 import wpartone.repository.UserRepository;
@@ -56,5 +57,16 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(u -> u.getUsername())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addRoleToUser(String username, String role) {
+         User user = this.userRepository.findByUsername(username).orElse(null);
+
+         if (!user.getRole().getName().equals(role)){
+             Role role1 = this.modelMapper.map(this.roleService.findByName(role), Role.class);
+             user.setRole(role1);
+             this.userRepository.saveAndFlush(user);
+         }
     }
 }
